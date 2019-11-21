@@ -1,0 +1,577 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PageSpeedAnalyticsApplication</name>
+    </assembly>
+    <members>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedCalculations.GetAverageScore(System.Int32[])">
+            GetAverageScore
+            <summary>Returns the average of a given int array</summary>
+            <param name="array">array of ints to average</param>
+            <returns>Int value of the average of given ints.</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedCalculations.ParseCSV(System.String)">
+            ParseCSV
+            <summary>Parse a given CSV file for URLS to process
+            <para>See: https://danashurst.com/parsing-a-csv-file/ </para></summary>
+            <param name="path">Path to where CSV file is</param>
+            <returns>List of strings containing urls from the parsed CSV file</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedCalculations.CheckIfUrlsValid(System.Collections.Generic.List{System.String})">
+            CheckIfUrlsValid
+            <summary>Loops through list of strings and check
+            if they are valid urls; Returns only valid urls.</summary>
+            <param name="urls">List of url strings to validate</param>
+            <returns>List of strings containing validated urls</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedCalculations.CheckURLIsValid(System.String)">
+            CheckURLIsValid
+            <summary>Loops through list of strings and check
+            if they are valid urls; Returns only valid urls.</summary>
+            <param name="strURL">string to validate</param>
+            <returns>TRUE if string is valid url; else returns FALSE</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedCalculations.ConvertReportMethod(System.String)">
+            ConvertReportMethod
+            <summary>Convert given int to a report method.</summary>
+            <param name="s">string of return method</param>
+            <returns>Int of converted report method</returns>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.PageSpeedEntity">
+            <summary>
+            Data Model Class for Page Speed Response Storage
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.PageSpeedEntity.Base_URL">
+            <summary>
+            URL this object is based on
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.PageSpeedEntity.Result">
+            <summary>
+            original structure of response returned from google
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.PageSpeedEntity.Score">
+            <summary>
+            Speed Score from Response
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.PageSpeedEntity.Date">
+            <summary>
+            Date of Request/Response
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.PageSpeedEntity.Strategy">
+            <summary>
+            Strategy used; 0 = Desktop, 1 = Mobile
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.CreateReports(System.Collections.Generic.List{System.String},System.Collections.Generic.List{PageSpeedAnalyticsApplication.PageSpeedEntity},System.Collections.Generic.List{PageSpeedAnalyticsApplication.PageSpeedEntity},System.Int32)">
+            PATH NOTES FOR FILE SAVING
+            PATH NOTES FOR FILE SAVING
+            string s = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents");
+            // s = "C:\Users\Cat\Documents"
+            string s = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents","XYZ");
+            // s = "C:\Users\Cat\Documents\XYZ"
+            
+            CreateReports
+            <summary>Runs create report processes</summary>
+            <param name="urls">List of urls for report</param>
+            <param name="deskResults">PageSpeedEntity List containing desktop results</param>
+            <param name="mobileResults">PageSpeedEntity List containing mobile results</param>
+            <param name="method">int indicating user's requested report method</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.CreateReportsOriginal(System.Collections.Generic.List{System.String},System.Collections.Generic.List{PageSpeedAnalyticsApplication.PageSpeedEntity},System.Collections.Generic.List{PageSpeedAnalyticsApplication.PageSpeedEntity},System.Int32)">
+            CreateReports
+            <summary>Runs create report processes</summary>
+            <param name="urls">List of urls for report</param>
+            <param name="deskResults">PageSpeedEntity List containing desktop results</param>
+            <param name="mobileResults">PageSpeedEntity List containing mobile results</param>
+            <param name="method">int indicating user's requested report method</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.GetHeaderString">
+            GetHeaderString
+            <summary>Create the string array for the header
+            <para>Later can add more columns as needed</para></summary>
+            <returns>headerStringArray - a string[] containing the header strings</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.GetHeaderStringExpanded">
+            GetHeaderString
+            <summary>Create the string array for the header
+            <para>Later can add more columns as needed</para></summary>
+            <returns>headerStringArray - a string[] containing the header strings</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.CreateCSVReport(System.String[0:,0:])">
+            CreateCSVReport
+            <summary>
+            <para>Takes in a multi-dimensional string array and creates a CSV
+            file to contain it. Saves file to user's Downloads folder</para>
+            </summary>
+            <param name="data">multidimensional string array containing required data</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.CreateHTMLReport(System.String[0:,0:])">
+            CreateHTMLReport
+            <summary>
+            <para>Takes in a multi-dimensional string array and creates an html
+            file to show it.</para>
+            </summary>
+            <param name="data">multidimensional string array containing required data</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.CreateHtmlPage(System.String[0:,0:])">
+            CreateHtmlPage
+            <summary>Create text for a HTML file.</summary>
+            <param name="data">multidimensional string array containing required data</param>
+            <returns>String containing text of a newly created HTML page.</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedReport.CreateHTMLTable(System.String[0:,0:])">
+            CreateHTMLTable
+            <summary>Create text for a HTML table.</summary>
+            <param name="data">multidimensional string array containing required data</param>
+            <returns>String containing text of a newly created HTML Table.</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedService.RunProcessUrl(System.String)">
+            RunProcessUrl
+            <summary>Runs request on url and returns the response</summary>
+            <param name="url">string to run the api process on</param>
+            <returns>List of PageSpeedEntity objects with results</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedService.RunPageSpeedServiceProcess(System.Int32,System.String,System.Int32)">
+            RunPageSpeedServiceProcess
+            <summary>Task to request api and </summary>
+            <param name="strategy">sets whether to run desktop or mobile</param>
+            <param name="url">url to run</param>
+            <param name="index"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.PageSpeedService.CreatePageSpeedEntity(System.String,Google.Apis.Pagespeedonline.v4.Data.PagespeedApiPagespeedResponseV4,System.Int32)">
+            CreatePageSpeedEntity
+            <summary>create the page speed entity object</summary>
+            <param name="strURL">url for object</param>
+            <param name="result">response result to store in object</param>
+            <param name="strategy">desktop or mobile</param>
+            <returns>PageSpeedEntity object that was created</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.ReadWriteCSV">
+            ReadWriteCSV : Class
+            <summary>From: https://www.codeproject.com/Articles/415732/Reading-and-Writing-CSV-Files-in-Csharp </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.ReadWriteCSV.#ctor">
+            <summary>Constructor</summary>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.CsvRow">
+            <summary>
+            Class to store one CSV row
+            </summary>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.CsvFileWriter">
+            <summary>
+            Class to write data to a CSV file
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.CsvFileWriter.WriteRow(PageSpeedAnalyticsApplication.CsvRow)">
+            <summary>
+            Writes a single row to a CSV file.
+            </summary>
+            <param name="row">The row to be written</param>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.CsvFileReader">
+            <summary>
+            Class to read data from a CSV file
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.CsvFileReader.ReadRow(PageSpeedAnalyticsApplication.CsvRow)">
+            <summary>
+            Reads a row of data from a CSV file
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.ReportHTMLViewer">
+            <summary>
+            Report HTML Viewer - Displays the HTML report file
+            </summary>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.ReportHTMLViewer.htmlTextString">
+            <summary>
+            Global Variable:
+            string htmlTextString - string of html text to show
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.ReportHTMLViewer.#ctor(System.String)">
+            <summary>
+            Constructor.
+            Sets the global htmlTextString variable
+            Initializes the components
+            </summary>
+            <param name="htmlTextString"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.ReportHTMLViewer.ReportHTMLViewer_Load(System.Object,System.EventArgs)">
+            <summary>
+            Loads up the WebBrowser Component. Sets the template file as the url and writes the passed in htmlTextString to the file.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.ReportHTMLViewer.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.ReportHTMLViewer.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.ReportHTMLViewer.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.RunFromCSV.returnMethod">
+            <summary>
+            Global Variables:
+            returnMethod - report method (set by user)
+            fileNameToSubmit - File Name of CSV
+            filePathToSubmit - File Path of CSV
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.#ctor">
+            RunFromCSV
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.ChooseFileButton_Click(System.Object,System.EventArgs)">
+            ChooseFileButton_Click
+            <summary>See: http://www.wpf-tutorial.com/dialogs/the-openfiledialog/ </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.UpdateFileNameLabel(System.String,System.String)">
+            UpdateFileNameLabel
+            <summary>Updates the the CSVFileNameLabel</summary>
+            <param name="f">file name string to display</param>
+            <param name="p">file path string to display</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.CSVGoButton_Click(System.Object,System.EventArgs)">
+            CSVGoButton_Click
+            <summary></summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.radioButton1_CheckedChanged(System.Object,System.EventArgs)">
+            radioButton1_CheckedChanged
+            <summary>Set returnMethod to CSV.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.radioButton2_CheckedChanged(System.Object,System.EventArgs)">
+            radioButton2_CheckedChanged
+            <summary>Set returnMethod to HTML.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.radioButton3_CheckedChanged(System.Object,System.EventArgs)">
+            radioButton3_CheckedChanged
+            <summary>Set returnMethod to BOTH.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.HelpButton_Click(System.Object,System.EventArgs)">
+            HelpButton_Click
+            <summary>Shows the Help message when Help Button is clicked.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.ShowMessage(System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon)">
+            ShowMessage
+            <summary>Uses MessageBox to show user a message.</summary>
+            <param name="message"></param>
+            <param name="caption"></param>
+            <param name="btns"></param>
+            <param name="icon"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.RunFromCSV_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            RunFromCSV_FormClosed
+            <summary>Open Welcome Form when current form is closed.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.RunFromCSVCancelButton_Click(System.Object,System.EventArgs)">
+            RunFromCSVCancelButton_Click
+            <summary>Closes form when Cancel Button is clicked.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.RunFromCSV.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromCSV.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.#ctor">
+            RunFromTxt
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.SubmitButton_Click(System.Object,System.EventArgs)">
+            SubmitButton_Click
+            <summary>Starts procedure when Submit Button is clicked.
+            <para>Gets the urls, starts RunnerProcess, gives applicable
+            messages where needed.</para></summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.ClearTextBoxes">
+            ClearTextBoxes
+            <summary>Clears the textboxes on the form</summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.GetUrlsFromTextBoxes">
+            GetUrlsFromTextBoxes
+            <summary>Gets url strings from the textboxes</summary>
+            <returns>List of url strings</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.radioButton1_CheckedChanged(System.Object,System.EventArgs)">
+            radioButton1_CheckedChanged
+            <summary>Set returnMethod to CSV.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.radioButton2_CheckedChanged(System.Object,System.EventArgs)">
+            radioButton2_CheckedChanged
+            <summary>Set returnMethod to HTML.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.radioButton3_CheckedChanged(System.Object,System.EventArgs)">
+            radioButton3_CheckedChanged
+            <summary>Set returnMethod to BOTH.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.ShowMessage(System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon)">
+            ShowMessage
+            <summary>Uses MessageBox to show user a message.</summary>
+            <param name="message"></param>
+            <param name="caption"></param>
+            <param name="btns"></param>
+            <param name="icon"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.HelpButton_Click(System.Object,System.EventArgs)">
+            HelpButton_Click
+            <summary>Shows the Help message when Help Button is clicked.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.RunFromTxt_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            RunFromTxt_FormClosed
+            <summary>Open Welcome Form when current form is closed.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.CancelButton_Click(System.Object,System.EventArgs)">
+            CancelButton_Click
+            <summary>Closes form when Cancel Button is clicked.</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.RunFromTxt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunFromTxt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.RunnerProgress.runCSV">
+            <summary>boolean runCSV - set whether originates from run csv form</summary>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.RunnerProgress.DEFAULT_STEP">
+            <summary>int DEFAULT_STEP - default step amount for progress bar</summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.#ctor">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.Process(System.Collections.Generic.List{System.String},System.String)">
+            <summary>Process function</summary>
+            <param name="urls">List of url strings to process</param>
+            <param name="reportMethod">string report method of report type to return</param>
+            <returns>Boolean true if ran</returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.ProcessFromCSV(System.String,System.String,System.String)">
+            <summary>Runs process for a CSV file</summary>
+            <param name="fileName"></param>
+            <param name="filePath"></param>
+            <param name="reportMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.RunnerProgress_Load(System.Object,System.EventArgs)">
+            <summary>Loads RunnerProgress Form</summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.UpdateStatus(System.Int32,System.String)">
+            <summary>Update status in ProgressBar for ProgressBar size and Status label</summary>
+            <param name="amt">Amount to increase ProgressBar by</param>
+            <param name="s">String to change status label to</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.IncreaseBar(System.Int32)">
+            <summary>Increases the ProgressBar by the passed in amount</summary>
+            <param name="amt">Integer amount to increase ProgressBar by</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.UpdateStatusLabel(System.String)">
+            <summary>Updates status label in form with passed in string</summary>
+            <param name="s">string to change the label text to</param>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.RunnerProgress.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunnerProgress.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunProcessing.RunProcessingCSV(System.String,System.String,System.String)">
+            RunProcessingCSV
+            <summary>Runs the procedures starting from the CSV form</summary>
+            <param name="fileName">name of the csv file</param>
+            <param name="filePath">path of the csv file</param>
+            <param name="reportMethod">requested method for report</param>
+            <returns></returns>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.RunProcessing.RunProcessingList(System.Collections.Generic.List{System.String},System.String)">
+            RunProcessingList
+            <summary>Run the procedure on a given list.</summary>
+            <param name="urls">urls to run through the procedure.</param>
+            <param name="reportMethod">requested method for report</param>
+            <returns></returns>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.Welcome.runFromTxtForm">
+            <summary>
+            Global Variables:
+            RunFromTxt runFromTxtForm - form to use
+            RunFromCSV runFromCSVForm - form to use
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.#ctor">
+            <summary>
+            Starts up the Welcome Form.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.Welcome_Load(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.EnterURLButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Starts the Run From Text Form Window
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.EnterCSVButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Starts the Run From CSV Form Window
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.HelpButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Help Button - Shows the Help Message
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.QuitButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Quit Button - Closes the application
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.RunFromCSV_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Opens the Welcome Form when the Run From CSV Form has closed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.RunFromTxt_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Opens the Welcome Form when the Run From Text Form has closed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:PageSpeedAnalyticsApplication.Welcome.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PageSpeedAnalyticsApplication.Welcome.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:PageSpeedAnalyticsApplication.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:PageSpeedAnalyticsApplication.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
